@@ -3,11 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Shin Taeyoung Company</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <style>
 :root {
   --blue: #2d6bff;
@@ -16,6 +13,7 @@
   --card: #ffffff;
   --border: #e5e7eb;
   --discord: #5865F2;
+  --success: #10b981;
 }
 
 [data-theme="dark"] {
@@ -41,21 +39,23 @@ body {
 
 section {
   max-width: 1100px;
-  margin: 100px auto;
+  margin: 60px auto;
   padding: 0 20px;
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
+/* Navigation */
 nav {
   position: sticky;
   top: 0;
   background: white;
   border-bottom: 1px solid var(--border);
+  z-index: 100;
 }
 
 nav ul {
@@ -68,55 +68,76 @@ nav ul {
   list-style: none;
 }
 
-.nav-links a {
-  margin-left: 20px;
-  cursor: pointer;
-  font-weight: 600;
+.nav-links {
+  display: flex;
+  gap: 15px;
 }
 
+.nav-links a {
+  cursor: pointer;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+/* Hero Section */
 header {
   background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)),
     url("https://images.unsplash.com/photo-1518770660439-4636190af475");
   background-size: cover;
   color: white;
   text-align: center;
-  padding: 180px 20px;
+  padding: 100px 20px;
 }
 
 .hero img {
-  width: 150px;
+  width: 120px;
   margin-bottom: 20px;
 }
 
 .hero h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   font-weight: 800;
+  margin-bottom: 10px;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  margin-top: 10px;
+  font-size: 1.1rem;
 }
 
+/* Buttons */
 .btn {
-  padding: 15px 35px;
+  padding: 12px 30px;
   background: var(--blue);
   border: none;
   border-radius: 999px;
   color: white;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.3s;
+  display: inline-block;
+  margin-top: 20px;
 }
 
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Cards */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
+  gap: 20px;
 }
 
 .card {
-  padding: 30px;
-  border-radius: 18px;
+  padding: 25px;
+  border-radius: 15px;
   background: var(--card);
   border: 1px solid var(--border);
   transition: .3s;
@@ -124,32 +145,38 @@ header {
 
 .card:hover {
   transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Discord Button */
 .discord-btn {
   display: inline-block;
-  padding: 16px 38px;
+  padding: 14px 32px;
   border-radius: 999px;
   background: linear-gradient(135deg, #5865F2, #7b8cff);
   color: white;
   font-weight: 700;
   text-decoration: none;
-  animation: glow 2s infinite alternate;
+  transition: all 0.3s;
+  margin-top: 20px;
 }
 
-@keyframes glow {
-  from { box-shadow: 0 0 10px rgba(88, 101, 242, .5); }
-  to { box-shadow: 0 0 30px rgba(88, 101, 242, .9); }
+.discord-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
 }
 
+/* Contact Section */
 #contact {
   background: #0b1220;
   color: white;
-  border-radius: 40px;
-  padding: 80px;
+  border-radius: 20px;
+  padding: 40px;
   text-align: center;
+  margin-top: 60px;
 }
 
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -160,13 +187,29 @@ header {
   background: rgba(0, 0, 0, .7);
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
 
 .modal-box {
   background: white;
-  padding: 40px;
-  border-radius: 20px;
-  width: 320px;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal h3 {
+  margin-bottom: 20px;
+  color: var(--blue);
 }
 
 .modal input {
@@ -177,46 +220,26 @@ header {
   border: 1px solid #ccc;
 }
 
+/* Footer */
 footer {
   text-align: center;
-  padding: 40px;
-  opacity: .7;
-}
-
-.price-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.price-card {
   padding: 30px;
-  border-radius: 18px;
-  background: var(--card);
-  border: 1px solid var(--border);
+  opacity: .7;
+  margin-top: 60px;
 }
 
-.price-card h4 {
-  color: var(--blue);
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-}
-
-.price-card p {
-  margin: 10px 0;
-}
-
+/* Pricing Sections */
 .ad-pricing, .rental-pricing, .builder-pricing {
   background: var(--card);
-  border-radius: 20px;
-  padding: 40px;
+  border-radius: 15px;
+  padding: 30px;
   border: 1px solid var(--border);
   max-width: 800px;
   margin: 0 auto;
 }
 
 .ad-tier, .rental-tier {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border);
 }
@@ -226,13 +249,13 @@ footer {
 }
 
 .ad-tier h3, .rental-tier h3 {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--blue);
   margin-bottom: 15px;
 }
 
 .ad-tier .price, .rental-tier .price {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 15px;
 }
@@ -256,33 +279,194 @@ footer {
 
 .ad-copyright, .rental-copyright, .builder-copyright {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
   font-style: italic;
   opacity: 0.8;
 }
 
+/* Tab System */
+.tab-nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
 .tab-button {
-  flex: 1;
-  padding: 10px;
+  padding: 10px 15px;
   border: none;
   border-radius: 8px;
   background: var(--blue);
   color: white;
   cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
 }
 
 .tab-button.active {
-  background: #1e40af !important;
+  background: #1e40af;
 }
 
 .tab-content {
   display: none;
 }
 
-.tab-content pre {
-  white-space: pre-wrap;
-  font-family: inherit;
-  margin: 0;
+.tab-content.active {
+  display: block;
+}
+
+.tab-content h3 {
+  font-size: 1.5rem;
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+.tab-content ul {
+  list-style-type: none;
+}
+
+.tab-content li {
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 25px;
+}
+
+.tab-content li:before {
+  content: "✓";
+  color: var(--blue);
+  position: absolute;
+  left: 0;
+}
+
+/* Forum Section */
+.forum-container {
+  background: var(--card);
+  border-radius: 15px;
+  padding: 30px;
+  border: 1px solid var(--border);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.forum-post {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.forum-post:last-child {
+  border-bottom: none;
+}
+
+.forum-post h4 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+.forum-post p {
+  margin-bottom: 10px;
+}
+
+.forum-post small {
+  color: #666;
+}
+
+.forum-form {
+  margin-top: 30px;
+}
+
+.forum-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 25px;
+  background: var(--success);
+  color: white;
+  border-radius: 8px;
+  z-index: 1000;
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  section {
+    margin: 40px auto;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  header {
+    padding: 80px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  #contact {
+    padding: 30px 20px;
+    border-radius: 0;
+  }
+  
+  .tab-nav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .modal-box {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero img {
+    width: 80px;
+  }
 }
 </style>
 </head>
@@ -292,25 +476,30 @@ footer {
 <nav>
   <ul>
     <li><b>Shin Taeyoung Company</b></li>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#pricelist">Pricelist</a>
       <a href="#rental">Vehicle Rental</a>
       <a href="#builder">Builder</a>
+      <a href="#forum">Forum</a>
       <a href="#contact">Contact</a>
       <a onclick="openLogin()">Login</a>
       <a onclick="toggleTheme()">🌓</a>
+    </div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"></path>
+      </svg>
     </div>
   </ul>
 </nav>
 
 <header>
   <div class="hero">
-    <img src="https://i.ibb.co.com/HL6f7w7w/image.png">
+    <img src="https://i.ibb.co.com/HL6f7w7w/image.png" alt="Shin Taeyoung Logo">
     <h1>SHIN TAEYOUNG COMPANY</h1>
     <p>Redefining the Future of Technology</p>
-    <br>
     <button class="btn" onclick="scrollAbout()">Explore</button>
   </div>
 </header>
@@ -432,16 +621,14 @@ footer {
 <section id="builder">
   <h2>Builder Pricelist</h2>
   <div class="builder-pricing">
-    <!-- Tab Navigation -->
-    <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-      <button onclick="openTab(event, 'tab1')" class="tab-button">Flat</button>
+    <div class="tab-nav">
+      <button onclick="openTab(event, 'tab1')" class="tab-button active">Flat</button>
       <button onclick="openTab(event, 'tab2')" class="tab-button">Suite</button>
       <button onclick="openTab(event, 'tab3')" class="tab-button">House</button>
-      <button onclick="openTab(event, 'tab4')" class="tab-button">House (2)</button>
+      <button onclick="openTab(event, 'tab4')" class="tab-button">House (Extended)</button>
     </div>
 
-    <!-- Tab Content -->
-    <div id="tab1" class="tab-content">
+    <div id="tab1" class="tab-content active">
       <h3>FLAT</h3>
       <ul>
         <li>LOW TYPE : <strong>$5,000 - $7,000</strong></li>
@@ -452,7 +639,7 @@ footer {
       </ul>
     </div>
 
-    <div id="tab2" class="tab-content" style="display: none;">
+    <div id="tab2" class="tab-content">
       <h3>SUITE</h3>
       <ul>
         <li>UNITY : <strong>$12,000 - $21,000</strong></li>
@@ -462,7 +649,7 @@ footer {
       </ul>
     </div>
 
-    <div id="tab3" class="tab-content" style="display: none;">
+    <div id="tab3" class="tab-content">
       <h3>HOUSE</h3>
       <ul>
         <li>2 ROOMS : <strong>$7,000 - $8,000</strong></li>
@@ -473,7 +660,7 @@ footer {
       </ul>
     </div>
 
-    <div id="tab4" class="tab-content" style="display: none;">
+    <div id="tab4" class="tab-content">
       <h3>HOUSE (EXTENDED)</h3>
       <ul>
         <li>4 ROOMS (ROCKSHORE) : <strong>$15,000</strong></li>
@@ -484,42 +671,72 @@ footer {
       </ul>
     </div>
 
-    <!-- Copyright -->
     <div class="builder-copyright">© Shin Taeyoung Company</div>
   </div>
 </section>
-  
+
+<section id="forum">
+  <h2>Community Forum</h2>
+  <div class="forum-container">
+    <div class="forum-post">
+      <h4>Welcome to our community!</h4>
+      <p>Feel free to discuss anything related to our services and products.</p>
+      <small>Posted by Admin - 1 day ago</small>
+    </div>
+    
+    <div id="forumPosts">
+      <!-- Forum posts will be loaded here -->
+    </div>
+    
+    <div class="forum-form">
+      <h4>Post a Message</h4>
+      <textarea id="forumMessage" placeholder="Write your message here..."></textarea>
+      <button class="btn" onclick="postMessage()">Post Message</button>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <h2>Join Our Community</h2>
   <p>Email : contact@shintaecompany.com</p>
-  <br><br>
   <a href="https://discord.gg/Ptt8D4GYNm" target="_blank" class="discord-btn">🚀 Join Our Discord</a>
 </section>
 
 <footer>© 2026 Shin Taeyoung Company (신태영 컴퍼니)</footer>
 
-<!-- LOGIN MODAL -->
+<!-- Login Modal -->
 <div class="modal" id="loginModal">
   <div class="modal-box">
+    <span class="modal-close" onclick="closeLogin()">&times;</span>
     <h3>Secure Login</h3>
     <input id="username" placeholder="Username">
     <input id="password" type="password" placeholder="Password">
     <button class="btn" onclick="login()">Login</button>
-    <br><br>
-    <button onclick="closeLogin()">Close</button>
   </div>
 </div>
 
+<!-- Notification -->
+<div class="notification" id="notification"></div>
+
 <script>
+// Mobile Menu Toggle
+function toggleMenu() {
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('active');
+}
+
+// Theme Toggle
 function toggleTheme() {
   let theme = document.documentElement.getAttribute("data-theme");
   document.documentElement.setAttribute("data-theme", theme === "dark" ? "light" : "dark");
 }
 
+// Smooth Scroll
 function scrollAbout() {
   document.getElementById("about").scrollIntoView({ behavior: "smooth" });
 }
 
+// Login System
 function openLogin() {
   document.getElementById("loginModal").style.display = "flex";
 }
@@ -532,38 +749,110 @@ function sanitize(input) {
   return input.replace(/[<>]/g, "");
 }
 
+function showNotification(message, isSuccess = true) {
+  const notification = document.getElementById('notification');
+  notification.textContent = message;
+  notification.style.backgroundColor = isSuccess ? '#10b981' : '#ef4444';
+  notification.style.display = 'block';
+  
+  setTimeout(() => {
+    notification.style.display = 'none';
+  }, 3000);
+}
+
 function login() {
-  let user = sanitize(document.getElementById("username").value);
-  let pass = sanitize(document.getElementById("password").value);
+  const user = sanitize(document.getElementById("username").value);
+  const pass = sanitize(document.getElementById("password").value);
 
   if (user.length < 3 || pass.length < 3) {
-    alert("Username and password must be at least 3 characters");
+    showNotification("Username and password must be at least 3 characters", false);
     return;
   }
 
   localStorage.setItem("sessionUser", user);
-  alert("Login Success");
-  location.reload();
+  showNotification("Login successful!");
+  closeLogin();
 }
 
-window.onload = function () {
-  let session = localStorage.getItem("sessionUser");
-  if (session) {
-    console.log("User logged:", session);
-  }
-};
-
+// Tab System
 function openTab(evt, tabName) {
   const tabContents = document.querySelectorAll(".tab-content");
-  tabContents.forEach((tab) => (tab.style.display = "none"));
+  tabContents.forEach((tab) => tab.classList.remove("active"));
 
   const tabButtons = document.querySelectorAll(".tab-button");
   tabButtons.forEach((button) => button.classList.remove("active"));
 
-  document.getElementById(tabName).style.display = "block";
+  document.getElementById(tabName).classList.add("active");
   evt.currentTarget.classList.add("active");
 }
-</script>
 
+// Forum System
+let forumPosts = [
+  {
+    author: "Admin",
+    message: "Welcome to our community forum! Feel free to ask questions.",
+    date: "2 hours ago"
+  }
+];
+
+function loadForumPosts() {
+  const forumContainer = document.getElementById('forumPosts');
+  forumContainer.innerHTML = '';
+  
+  forumPosts.forEach(post => {
+    const postElement = document.createElement('div');
+    postElement.className = 'forum-post';
+    postElement.innerHTML = `
+      <h4>${post.author}</h4>
+      <p>${post.message}</p>
+      <small>Posted ${post.date}</small>
+    `;
+    forumContainer.appendChild(postElement);
+  });
+}
+
+function postMessage() {
+  const messageInput = document.getElementById('forumMessage');
+  const message = sanitize(messageInput.value.trim());
+  
+  if (message.length < 5) {
+    showNotification("Message must be at least 5 characters", false);
+    return;
+  }
+  
+  const username = localStorage.getItem("sessionUser") || "Guest";
+  
+  forumPosts.unshift({
+    author: username,
+    message: message,
+    date: "just now"
+  });
+  
+  messageInput.value = '';
+  loadForumPosts();
+  showNotification("Message posted successfully!");
+}
+
+// Initialize
+window.onload = function() {
+  loadForumPosts();
+  
+  // Set first tab as active by default
+  document.querySelector('.tab-button').click();
+  
+  // Check if user is logged in
+  if (localStorage.getItem("sessionUser")) {
+    console.log("User is logged in:", localStorage.getItem("sessionUser"));
+  }
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('loginModal');
+  if (event.target == modal) {
+    closeLogin();
+  }
+}
+</script>
 </body>
 </html>
