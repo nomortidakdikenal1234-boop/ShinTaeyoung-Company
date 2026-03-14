@@ -220,185 +220,211 @@ cursor:pointer;
 
 
 <section id="services">
-
-<h2>Our Services</h2>
-
-<div class="grid">
-
-<div class="card">Advertising Service</div>
-<div class="card">Builder Service</div>
-<div class="card">Vehicle Rental</div>
-<div class="card">Vehicle Showroom</div>
-<div class="card">Homestay Apartment</div>
-
-</div>
-
-</section>
-
-
-
-<section id="pricelist">
-  <h2>Advertisement Pricelist</h2>
-  <div class="ad-pricing">
-    <div class="ad-tier">
-      <h3>BASIC</h3>
-      <div class="price">$50/ADS</div>
-      <ul>
-        <li>Include With <strong>Watermark</strong></li>
-        <li><strong>Fast Service</strong></li>
-      </ul>
+  <h2>Our Services</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Advertising Service</h3>
+      <p>Professional advertising solutions for your business</p>
+      <button class="btn btn-small" onclick="openTab('pricelist')">View Pricing</button>
     </div>
-    <div class="ad-tier">
-      <h3>PREMIUM</h3>
-      <div class="price">$90/ADS</div>
-      <ul>
-        <li>Non <strong>Watermark</strong></li>
-        <li><strong>Fast Service</strong></li>
-        <li>With <strong>Broadcast Schedule</strong></li>
-      </ul>
+    <div class="card">
+      <h3>Builder Service</h3>
+      <p>Custom building and construction services</p>
+      <button class="btn btn-small" onclick="openTab('builder')">View Options</button>
     </div>
-    <div class="ad-tier">
-      <h3>UNLIMITED</h3>
-      <div class="price">$100/ADS</div>
-      <ul>
-        <li><strong>Watermark/Non Watermark Request</strong></li>
-        <li><strong>Fast Service</strong></li>
-        <li>With <strong>Broadcast Schedule</strong></li>
-      </ul>
+    <div class="card">
+      <h3>Vehicle Rental</h3>
+      <p>Flexible vehicle rental options</p>
+      <button class="btn btn-small" onclick="openTab('rental')">View Fleet</button>
     </div>
-    <div class="ad-copyright">© Shin Taeyoung Company</div>
+    <div class="card">
+      <h3>Vehicle Showroom</h3>
+      <p>Browse our premium vehicle collection</p>
+      <button class="btn btn-small" onclick="openTab('showroom')">View Showroom</button>
+    </div>
+    <div class="card">
+      <h3>Homestay Apartment</h3>
+      <p>Comfortable short-term accommodations</p>
+      <button class="btn btn-small" onclick="openTab('homestay')">View Rates</button>
+    </div>
   </div>
 </section>
 
-</div>
-
-
-<div id="rental" class="tab">
-
-<section id="rental">
-  <h2>Vehicle Rental Pricelist</h2>
-  <div class="rental-pricing">
-    <div class="rental-tier">
-      <h3>BENSON</h3>
-      <div class="price">$20/CRATE</div>
-      <ul>
-        <li>PADLOCK : <strong>$345</strong></li>
-        <li>DESTROY/INSURANCE : <strong>$500</strong></li>
-      </ul>
+<section id="pricelist" class="tab-content">
+  <div class="card">
+    <h2>Advertisement Pricelist</h2>
+    <div class="ad-pricing">
+      <div class="ad-tier">
+        <h3>BASIC</h3>
+        <div class="price">$50/ADS</div>
+        <ul>
+          <li>Include With <strong>Watermark</strong></li>
+          <li><strong>Fast Service</strong></li>
+        </ul>
+      </div>
+      <div class="ad-tier">
+        <h3>PREMIUM</h3>
+        <div class="price">$90/ADS</div>
+        <ul>
+          <li>Non <strong>Watermark</strong></li>
+          <li><strong>Fast Service</strong></li>
+          <li>With <strong>Broadcast Schedule</strong></li>
+        </ul>
+      </div>
+      <div class="ad-tier">
+        <h3>UNLIMITED</h3>
+        <div class="price">$100/ADS</div>
+        <ul>
+          <li><strong>Watermark/Non Watermark Request</strong></li>
+          <li><strong>Fast Service</strong></li>
+          <li>With <strong>Broadcast Schedule</strong></li>
+        </ul>
+      </div>
+      <div class="ad-copyright">© Shin Taeyoung Company</div>
     </div>
-    <div class="rental-tier">
-      <h3>ROADTRAIN</h3>
-      <div class="price">$30/TRAILER</div>
-      <ul>
-        <li>PADLOCK : <strong>$560</strong></li>
-        <li>DESTROY/INSURANCE : <strong>$1,000</strong></li>
-      </ul>
-    </div>
-    <div class="rental-tier">
-      <h3>BOAT</h3>
-      <div class="price">$22/HOURS</div>
-      <ul>
-        <li>PADLOCK : <strong>$520</strong></li>
-        <li>DESTROY/INSURANCE : <strong>$734</strong></li>
-      </ul>
-    </div>
-    <div class="rental-copyright">© Shin Taeyoung Company</div>
   </div>
 </section>
 
-</div>
-
-
-<div id="builder" class="tab">
-
-<section id="builder">
-  <h2>Builder Pricelist</h2>
-  <div class="builder-pricing">
-    <div class="tab-nav">
-      <button onclick="openBuilder('tab1')">Flat</button>
-      <button onclick="openBuilder('tab2')">Suite</button>
-      <button onclick="openBuilder('tab3')">House</button>
-      <button onclick="openBuilder('tab4')">House (Extended)</button>
+<section id="rental" class="tab-content">
+  <div class="card">
+    <h2>Vehicle Rental Pricelist</h2>
+    <div class="rental-pricing">
+      <div class="rental-tier">
+        <h3>BENSON</h3>
+        <div class="price">$20/CRATE</div>
+        <ul>
+          <li>PADLOCK : <strong>$345</strong></li>
+          <li>DESTROY/INSURANCE : <strong>$500</strong></li>
+        </ul>
+      </div>
+      <div class="rental-tier">
+        <h3>ROADTRAIN</h3>
+        <div class="price">$30/TRAILER</div>
+        <ul>
+          <li>PADLOCK : <strong>$560</strong></li>
+          <li>DESTROY/INSURANCE : <strong>$1,000</strong></li>
+        </ul>
+      </div>
+      <div class="rental-tier">
+        <h3>BOAT</h3>
+        <div class="price">$22/HOURS</div>
+        <ul>
+          <li>PADLOCK : <strong>$520</strong></li>
+          <li>DESTROY/INSURANCE : <strong>$734</strong></li>
+        </ul>
+      </div>
+      <div class="rental-copyright">© Shin Taeyoung Company</div>
     </div>
-
-    <div id="tab1" class="buildertab">
-      <h3>FLAT</h3>
-      <ul>
-        <li>LOW TYPE : <strong>$5,000 - $7,000</strong></li>
-        <li>MEDIUM TYPE : <strong>$8,000 - $9,000</strong></li>
-        <li>RAINBOW TYPE : <strong>$11,000</strong></li>
-        <li>HIGH TYPE : <strong>$10,000 - $12,000</strong></li>
-        <li>LUXURY TYPE : <strong>$16,000 - $18,000</strong></li>
-      </ul>
-    </div>
-
-    <div id="tab2" class="buildertab">
-      <h3>SUITE</h3>
-      <ul>
-        <li>UNITY : <strong>$12,000 - $21,000</strong></li>
-        <li>TEMPLE : <strong>$12,000 - $21,000</strong></li>
-        <li>RODEO : <strong>$14,000 - $22,000</strong></li>
-        <li>GLENPARK : <strong>$14,000 - $23,000</strong></li>
-      </ul>
-    </div>
-
-    <div id="tab3" class="buildertab">
-      <h3>HOUSE</h3>
-      <ul>
-        <li>2 ROOMS : <strong>$7,000 - $8,000</strong></li>
-        <li>3 ROOMS : <strong>$8,000 - $13,000</strong></li>
-        <li>4 ROOMS : <strong>$13,000 - $17,000</strong></li>
-        <li>3 ROOMS (PALOMINO) : <strong>$13,000</strong></li>
-        <li>4 ROOMS (PALOMINO) : <strong>$17,000</strong></li>
-      </ul>
-    </div>
-
-    <div id="tab4" class="buildertab">
-      <h3>HOUSE (EXTENDED)</h3>
-      <ul>
-        <li>4 ROOMS (ROCKSHORE) : <strong>$15,000</strong></li>
-        <li>5 ROOMS (ROCKSHORE) : <strong>$19,000</strong></li>
-        <li>5 ROOMS : <strong>$16,000</strong></li>
-        <li>6 ROOMS : <strong>$17,500</strong></li>
-        <li>8 ROOMS : <strong>$20,000</strong></li>
-      </ul>
-    </div>
-
   </div>
 </section>
 
-</div>
+<section id="builder" class="tab-content">
+  <div class="card">
+    <h2>Builder Pricelist</h2>
+    <div class="builder-pricing">
+      <div class="tab-nav">
+        <button class="tab-button" onclick="openBuilderTab('tab1')">Flat</button>
+        <button class="tab-button" onclick="openBuilderTab('tab2')">Suite</button>
+        <button class="tab-button" onclick="openBuilderTab('tab3')">House</button>
+        <button class="tab-button" onclick="openBuilderTab('tab4')">House (Extended)</button>
+      </div>
 
+      <div id="tab1" class="buildertab active">
+        <h3>FLAT</h3>
+        <ul>
+          <li>LOW TYPE : <strong>$5,000 - $7,000</strong></li>
+          <li>MEDIUM TYPE : <strong>$8,000 - $9,000</strong></li>
+          <li>RAINBOW TYPE : <strong>$11,000</strong></li>
+          <li>HIGH TYPE : <strong>$10,000 - $12,000</strong></li>
+          <li>LUXURY TYPE : <strong>$16,000 - $18,000</strong></li>
+        </ul>
+      </div>
 
-<div id="homestay" class="tab">
+      <div id="tab2" class="buildertab">
+        <h3>SUITE</h3>
+        <ul>
+          <li>UNITY : <strong>$12,000 - $21,000</strong></li>
+          <li>TEMPLE : <strong>$12,000 - $21,000</strong></li>
+          <li>RODEO : <strong>$14,000 - $22,000</strong></li>
+          <li>GLENPARK : <strong>$14,000 - $23,000</strong></li>
+        </ul>
+      </div>
 
-<div class="card">
+      <div id="tab3" class="buildertab">
+        <h3>HOUSE</h3>
+        <ul>
+          <li>2 ROOMS : <strong>$7,000 - $8,000</strong></li>
+          <li>3 ROOMS : <strong>$8,000 - $13,000</strong></li>
+          <li>4 ROOMS : <strong>$13,000 - $17,000</strong></li>
+          <li>3 ROOMS (PALOMINO) : <strong>$13,000</strong></li>
+          <li>4 ROOMS (PALOMINO) : <strong>$17,000</strong></li>
+        </ul>
+      </div>
 
-<h3>Homestay Apartment</h3>
-
-<p>$500 - $600 / Weeks</p>
-
-</div>
-
-</div>
-
-
-<div id="showroom" class="tab">
-
-<div class="card">
-
-<h3>Vehicle Showroom</h3>
-
-<p>Custom Price</p>
-
-<p>Harga tergantung jumlah kendaraan dan pemesanan.</p>
-
-</div>
-
-</div>
-
+      <div id="tab4" class="buildertab">
+        <h3>HOUSE (EXTENDED)</h3>
+        <ul>
+          <li>4 ROOMS (ROCKSHORE) : <strong>$15,000</strong></li>
+          <li>5 ROOMS (ROCKSHORE) : <strong>$19,000</strong></li>
+          <li>5 ROOMS : <strong>$16,000</strong></li>
+          <li>6 ROOMS : <strong>$17,500</strong></li>
+          <li>8 ROOMS : <strong>$20,000</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
+<section id="homestay" class="tab-content">
+  <div class="card">
+    <h3>Homestay Apartment</h3>
+    <div class="price">$500 - $600 / Weeks</div>
+    <p>Comfortable and fully furnished apartments for short-term stays</p>
+    <button class="btn btn-small">Book Now</button>
+  </div>
+</section>
+
+<section id="showroom" class="tab-content">
+  <div class="card">
+    <h3>Vehicle Showroom</h3>
+    <p>Custom Price</p>
+    <p>Harga tergantung jumlah kendaraan dan pemesanan.</p>
+    <button class="btn btn-small">Contact Us</button>
+  </div>
+</section>
+
+<script>
+// Tab navigation for main services
+function openTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.style.display = 'none';
+  });
+  
+  // Show selected tab
+  document.getElementById(tabId).style.display = 'block';
+  
+  // Scroll to the tab
+  document.getElementById(tabId).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Tab navigation for builder service
+function openBuilderTab(tabId) {
+  // Hide all builder tabs
+  document.querySelectorAll('.buildertab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Show selected tab
+  document.getElementById(tabId).classList.add('active');
+}
+
+// Initialize - show first tab by default
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('.tab-content').style.display = 'block';
+  document.querySelector('.buildertab').classList.add('active');
+});
+</script>
 
 
 <section id="partnership">
@@ -407,7 +433,14 @@ cursor:pointer;
 
 <div class="card">
 
-<p>Silakan tambahkan daftar partner perusahaan di sini.</p>
+<p>Marcha Collective</p>
+<p>The Daily Globes</p>
+<p>Reality Group</p>
+<p>Cavallo Nero Club</p>
+<p>Malapukhnai Corporation</p>
+<p>Grand Heritage</p>
+<p>Ace Company</p>
+<p>Regal Lion Group</p>  
 
 </div>
 
