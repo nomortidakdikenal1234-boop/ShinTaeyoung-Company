@@ -14,6 +14,7 @@
   --border: #e5e7eb;
   --discord: #5865F2;
   --success: #10b981;
+  --error: #ef4444;
 }
 
 [data-theme="dark"] {
@@ -110,54 +111,6 @@ header {
   margin: 0 auto;
   position: relative;
   z-index: 2;
-}
-
-.forum-sidebar {
-  width: 300px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  padding: 15px;
-  margin-right: 20px;
-  color: #333;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.forum-sidebar h3 {
-  color: var(--blue);
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.forum-post {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
-}
-
-.forum-post:last-child {
-  border-bottom: none;
-}
-
-.forum-post p {
-  font-size: 0.9rem;
-  margin-bottom: 5px;
-}
-
-.forum-post small {
-  color: #666;
-  font-size: 0.7rem;
-}
-
-.forum-form textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
-  resize: vertical;
-  min-height: 60px;
-  font-size: 0.9rem;
 }
 
 .hero-content {
@@ -434,30 +387,135 @@ footer {
   left: 0;
 }
 
+/* Chatbox Forum */
+.chatbox-container {
+  background: var(--card);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.chatbox-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chatbox-header h3 {
+  color: var(--blue);
+  margin: 0;
+}
+
+.chatbox-messages {
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: rgba(0,0,0,0.02);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.message {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border-radius: 18px;
+  max-width: 70%;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.message-user {
+  background-color: var(--blue);
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.message-other {
+  background-color: #f1f1f1;
+  color: #333;
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+}
+
+[data-theme="dark"] .message-other {
+  background-color: #1e293b;
+  color: #eee;
+}
+
+.message-author {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+}
+
+.message-content {
+  font-size: 0.9rem;
+}
+
+.message-time {
+  font-size: 0.7rem;
+  color: #666;
+  text-align: right;
+  margin-top: 5px;
+}
+
+[data-theme="dark"] .message-time {
+  color: #aaa;
+}
+
+.chatbox-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chatbox-input textarea {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  resize: none;
+  min-height: 60px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.chatbox-input button {
+  padding: 0 20px;
+  border-radius: 8px;
+}
+
 /* Notification */
 .notification {
   position: fixed;
   top: 20px;
   right: 20px;
   padding: 15px 25px;
-  background: var(--success);
-  color: white;
   border-radius: 8px;
   z-index: 1000;
   display: none;
+}
+
+.notification.success {
+  background: var(--success);
+  color: white;
+}
+
+.notification.error {
+  background: var(--error);
+  color: white;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .hero-container {
     flex-direction: column;
-  }
-  
-  .forum-sidebar {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 20px;
-    max-height: 200px;
   }
   
   .hero-logo {
@@ -524,6 +582,14 @@ footer {
     width: 95%;
     padding: 20px;
   }
+  
+  .chatbox-messages {
+    height: 300px;
+  }
+  
+  .message {
+    max-width: 85%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -550,6 +616,7 @@ footer {
       <a href="#pricelist">Pricelist</a>
       <a href="#rental">Vehicle Rental</a>
       <a href="#builder">Builder</a>
+      <a href="#forum">Forum</a>
       <a href="#contact">Contact</a>
       <a onclick="openLogin()">Login</a>
       <a onclick="toggleTheme()">🌓</a>
@@ -563,27 +630,13 @@ footer {
 </nav>
 
 <header>
-  <!-- Particles Background -->
   <div id="particles-js"></div>
-  
   <div class="hero-container">
-    <div class="forum-sidebar">
-      <h3>Community Forum</h3>
-      <div id="forumPosts">
-        <!-- Forum posts will be loaded here -->
-      </div>
-      <div class="forum-form">
-        <textarea id="forumMessage" placeholder="Write your message here..."></textarea>
-        <button class="btn btn-small" onclick="postMessage()">Post Message</button>
-      </div>
-    </div>
-    
     <div class="hero-content">
       <h1>SHIN TAEYOUNG COMPANY</h1>
       <p>Redefining the Future of Technology</p>
       <button class="btn" onclick="scrollAbout()">Explore</button>
     </div>
-    
     <div class="hero-logo">
       <img src="https://i.ibb.co.com/HL6f7w7w/image.png" alt="Shin Taeyoung Logo">
     </div>
@@ -761,6 +814,25 @@ footer {
   </div>
 </section>
 
+<section id="forum">
+  <h2>Community Chat</h2>
+  <div class="chatbox-container">
+    <div class="chatbox-header">
+      <h3>Shin Taeyoung Community</h3>
+      <div id="onlineCount">1 online</div>
+    </div>
+    
+    <div class="chatbox-messages" id="chatMessages">
+      <!-- Messages will be loaded here -->
+    </div>
+    
+    <div class="chatbox-input">
+      <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+      <button class="btn" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <h2>Join Our Community</h2>
   <p>Email : contact@shintaecompany.com</p>
@@ -789,92 +861,103 @@ footer {
 // Initialize Particles.js
 particlesJS("particles-js", {
   particles: {
-    number: {
-      value: 80,
-      density: {
-        enable: true,
-        value_area: 800
-      }
-    },
-    color: {
-      value: "#2d6bff"
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000"
-      },
-      polygon: {
-        nb_sides: 5
-      }
-    },
-    opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false
-      }
-    },
-    size: {
-      value: 3,
-      random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false
-      }
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#2d6bff",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200
-      }
-    }
+    number: { value: 80 },
+    color: { value: "#2d6bff" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: { enable: true, distance: 150, color: "#2d6bff", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 6 }
   },
   interactivity: {
     detect_on: "canvas",
     events: {
-      onhover: {
-        enable: true,
-        mode: "repulse"
-      },
-      onclick: {
-        enable: true,
-        mode: "push"
-      },
+      onhover: { enable: true, mode: "repulse" },
+      onclick: { enable: true, mode: "push" },
       resize: true
-    },
-    modes: {
-      repulse: {
-        distance: 100,
-        duration: 0.4
-      },
-      push: {
-        particles_nb: 4
-      }
     }
   },
   retina_detect: true
+});
+
+// Chatbox Functionality
+let messages = JSON.parse(localStorage.getItem('chatMessages')) || [
+  {
+    author: "Admin",
+    content: "Welcome to Shin Taeyoung Community Chat!",
+    timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+    type: "other"
+  }
+];
+
+function loadMessages() {
+  const chatContainer = document.getElementById('chatMessages');
+  chatContainer.innerHTML = '';
+  
+  messages.forEach(msg => {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message message-${msg.type}`;
+    messageDiv.innerHTML = `
+      <div class="message-author">${msg.author}</div>
+      <div class="message-content">${msg.content}</div>
+      <div class="message-time">${msg.timestamp}</div>
+    `;
+    chatContainer.appendChild(messageDiv);
+  });
+  
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById('messageInput');
+  const message = input.value.trim();
+  
+  if (message.length < 1) return;
+  
+  const username = localStorage.getItem('sessionUser') || 'Guest';
+  
+  messages.push({
+    author: username,
+    content: message,
+    timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+    type: localStorage.getItem('sessionUser') ? 'user' : 'other'
+  });
+  
+  localStorage.setItem('chatMessages', JSON.stringify(messages));
+  input.value = '';
+  loadMessages();
+  
+  // Simulate response
+  if (messages.length % 3 === 0) {
+    setTimeout(() => {
+      messages.push({
+        author: "Admin",
+        content: "Thanks for your message! How can we help you?",
+        timestamp: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+        type: "other"
+      });
+      localStorage.setItem('chatMessages', JSON.stringify(messages));
+      loadMessages();
+    }, 1000);
+  }
+}
+
+// Initialize Chatbox
+window.addEventListener('DOMContentLoaded', () => {
+  loadMessages();
+  
+  document.getElementById('messageInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  
+  // Simulate online count
+  setInterval(() => {
+    const onlineCount = Math.floor(Math.random() * 10) + 1;
+    document.getElementById('onlineCount').textContent = `${onlineCount} online`;
+  }, 5000);
 });
 
 // Mobile Menu Toggle
@@ -910,7 +993,7 @@ function sanitize(input) {
 function showNotification(message, isSuccess = true) {
   const notification = document.getElementById('notification');
   notification.textContent = message;
-  notification.style.backgroundColor = isSuccess ? '#10b981' : '#ef4444';
+  notification.className = isSuccess ? 'notification success' : 'notification error';
   notification.style.display = 'block';
   
   setTimeout(() => {
@@ -942,67 +1025,6 @@ function openTab(evt, tabName) {
 
   document.getElementById(tabName).classList.add("active");
   evt.currentTarget.classList.add("active");
-}
-
-// Forum System
-let forumPosts = JSON.parse(localStorage.getItem("forumPosts")) || [
-  {
-    author: "Admin",
-    message: "Welcome to our community forum! Feel free to ask questions.",
-    date: new Date().toLocaleString()
-  }
-];
-
-function loadForumPosts() {
-  const forumContainer = document.getElementById('forumPosts');
-  forumContainer.innerHTML = '';
-  
-  forumPosts.forEach(post => {
-    const postElement = document.createElement('div');
-    postElement.className = 'forum-post';
-    postElement.innerHTML = `
-      <p><strong>${post.author}:</strong> ${post.message}</p>
-      <small>${post.date}</small>
-    `;
-    forumContainer.appendChild(postElement);
-  });
-}
-
-function postMessage() {
-  const messageInput = document.getElementById('forumMessage');
-  const message = sanitize(messageInput.value.trim());
-  
-  if (message.length < 5) {
-    showNotification("Message must be at least 5 characters", false);
-    return;
-  }
-  
-  const username = localStorage.getItem("sessionUser") || "Guest";
-  
-  forumPosts.unshift({
-    author: username,
-    message: message,
-    date: new Date().toLocaleString()
-  });
-  
-  localStorage.setItem("forumPosts", JSON.stringify(forumPosts));
-  
-  messageInput.value = '';
-  loadForumPosts();
-  showNotification("Message posted successfully!");
-}
-
-// Initialize
-window.onload = function() {
-  loadForumPosts();
-  
-  // Set first tab as active by default
-  document.querySelector('.tab-button').click();
-  
-  // Check if user is logged in
-  if (localStorage.getItem("sessionUser")) {
-    console.log("User is logged in:", localStorage.getItem("sessionUser"));
-  }
 }
 
 // Close modal when clicking outside
