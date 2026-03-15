@@ -3,220 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shin Taeyoung Company - Official Website</title>
+    <title>Shin Taeyoung Co. | Future is Here</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* CSS PREMIUM DARK BLUE & GOLD */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        :root { --tesla-red: #e01e37; --bg-dark: #000000; --card-bg: rgba(255, 255, 255, 0.05); --accent: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        body { background: var(--bg-dark); color: white; overflow-x: hidden; scroll-behavior: smooth; }
+        .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% -20%, #1a1a1a, #000); z-index: -1; }
         
-        body { 
-            background: linear-gradient(rgba(11, 44, 109, 0.95), rgba(11, 44, 109, 0.95)), 
-                        url('https://source.unsplash.com/1600x900/?business,luxury') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            scroll-behavior: smooth;
-        }
+        nav { position: fixed; top: 0; width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo { font-weight: 900; letter-spacing: 5px; font-size: 20px; }
+        .nav-links { display: flex; gap: 20px; }
+        .nav-links button { background: none; border: none; color: white; font-weight: 600; font-size: 11px; cursor: pointer; opacity: 0.6; transition: 0.3s; text-transform: uppercase; }
+        .nav-links button.active { opacity: 1; border-bottom: 2px solid white; }
 
-        header { 
-            padding: 20px 5%; 
-            background: rgba(0,0,0,0.8); 
-            backdrop-filter: blur(10px); 
-            border-bottom: 2px solid gold; 
-            text-align: center;
-            position: sticky; top: 0; z-index: 1000;
-        }
-        .logo { font-size: 26px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
-        .logo span { color: gold; }
+        section { min-height: 100vh; padding: 120px 8%; display: none; animation: TeslaFade 0.8s ease-out; }
+        section.active { display: block; }
+        @keyframes TeslaFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* TAB NAVIGATION MAIN */
-        .main-nav { display: flex; justify-content: center; flex-wrap: wrap; background: rgba(0,0,0,0.5); padding: 10px; gap: 10px; }
-        .main-nav button { background: none; border: 1px solid gold; color: gold; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; transition: 0.3s; }
-        .main-nav button:hover, .main-nav button.active { background: gold; color: black; }
+        h2 { font-weight: 900; font-size: 35px; text-align: center; margin-bottom: 50px; letter-spacing: 8px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .card, .ad-tier, .rental-tier, .buildertab { background: var(--card-bg); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(15px); text-align: center; }
+        .price { font-size: 30px; font-weight: 300; margin: 20px 0; color: white; }
+        ul { list-style: none; text-align: left; opacity: 0.8; line-height: 2; font-size: 14px; }
+        strong { color: white; font-weight: 700; }
 
-        section { padding: 40px 8%; max-width: 1200px; margin: auto; }
-        .tab-content { display: none; animation: fadeIn 0.5s; }
-        .tab-content.active { display: block; }
+        .tab-nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+        .tab-nav button { padding: 10px 20px; background: #171a20; border: 1px solid #333; color: white; border-radius: 50px; cursor: pointer; font-size: 12px; transition: 0.3s; }
+        .tab-nav button:hover { background: #393c41; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        h2 { color: gold; text-align: center; margin-bottom: 30px; font-size: 28px; text-transform: uppercase; }
-
-        /* PRICELIST CARDS */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card, .ad-tier, .rental-tier, .buildertab { 
-            background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 12px; 
-            border: 1px solid rgba(255,215,0,0.3); backdrop-filter: blur(10px);
-        }
-        .price { font-size: 24px; color: gold; font-weight: bold; margin: 10px 0; }
-        ul { list-style: none; padding-top: 10px; }
-        li { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 14px; }
-        li strong { color: gold; }
-
-        /* BUILDER SUB-TABS */
-        .tab-nav { display: flex; gap: 5px; margin-bottom: 15px; justify-content: center; }
-        .tab-nav button { padding: 5px 15px; background: rgba(255,255,255,0.2); border: none; color: white; cursor: pointer; border-radius: 3px; }
-
-        /* CHATBOX & TESTI */
-        .chatbox { position: fixed; bottom: 20px; right: 20px; width: 320px; background: white; color: black; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; z-index: 9999; border: 2px solid gold; }
-        .chat-header { background: #0b2c6d; color: white; padding: 15px; font-weight: bold; text-align: center; }
-        #chatmsg { height: 250px; overflow-y: auto; padding: 15px; font-size: 13px; display: flex; flex-direction: column; gap: 8px; background: #f8f9fa; }
-        .chat-item { background: #e9ecef; padding: 8px; border-radius: 8px; border-left: 4px solid #0b2c6d; }
-        .chat-input-area { display: flex; border-top: 1px solid #ddd; }
-        .chat-input-area input { flex: 1; border: none; padding: 12px; }
-        .chat-input-area button { background: gold; border: none; padding: 0 15px; cursor: pointer; }
-
-        .btn-gold { background: gold; color: black; border: none; padding: 12px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 10px; }
-        .copyright { text-align: center; font-size: 12px; margin-top: 20px; opacity: 0.6; color: gold; }
+        .chatbox { position: fixed; bottom: 25px; right: 25px; width: 340px; background: white; color: #171a20; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); overflow: hidden; z-index: 9999; }
+        .chat-header { background: #171a20; color: white; padding: 15px 20px; font-weight: 700; font-size: 14px; }
+        #chatmsg { height: 300px; overflow-y: auto; padding: 15px; display: flex; flex-direction: column; gap: 10px; background: #f4f4f4; }
+        .chat-item { background: white; padding: 10px 15px; border-radius: 12px; font-size: 13px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .chat-input-area { display: flex; padding: 12px; background: white; gap: 8px; border-top: 1px solid #eee; }
+        .chat-input-area input { flex: 1; border: none; background: #f0f0f0; padding: 10px 15px; border-radius: 50px; outline: none; }
+        .chat-input-area button { background: #171a20; color: white; border: none; padding: 10px 18px; border-radius: 50px; cursor: pointer; }
+        .copyright { text-align: center; padding: 40px; font-size: 10px; opacity: 0.4; letter-spacing: 3px; }
     </style>
-
+    
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
-
-<header>
-    <div class="logo">신태영 <span>Shin Taeyoung Co.</span></div>
-</header>
-
-<div class="main-nav">
-    <button onclick="showTab('pricelist')" id="btn-pricelist">Advertisement</button>
-    <button onclick="showTab('rental')" id="btn-rental">Rental</button>
-    <button onclick="showTab('builder')" id="btn-builder">Builder</button>
-    <button onclick="showTab('homestay')" id="btn-homestay">Homestay</button>
-    <button onclick="showTab('showroom')" id="btn-showroom">Showroom</button>
-    <button onclick="showTab('testi-section')" id="btn-testi-section">Testimonials</button>
-</div>
-
-<section id="pricelist" class="tab-content active">
-    <h2>Advertisement Pricelist</h2>
-    <div class="grid">
-        <div class="ad-tier">
-            <h3>BASIC</h3>
-            <div class="price">$50/ADS</div>
-            <ul><li>Include With <strong>Watermark</strong></li><li><strong>Fast Service</strong></li></ul>
-        </div>
-        <div class="ad-tier">
-            <h3>PREMIUM</h3>
-            <div class="price">$90/ADS</div>
-            <ul><li>Non <strong>Watermark</strong></li><li><strong>Fast Service</strong></li><li>With <strong>Broadcast Schedule</strong></li></ul>
-        </div>
-        <div class="ad-tier">
-            <h3>UNLIMITED</h3>
-            <div class="price">$100/ADS</div>
-            <ul><li><strong>Watermark/Non Watermark Request</strong></li><li><strong>Fast Service</strong></li><li>With <strong>Broadcast Schedule</strong></li></ul>
-        </div>
+<div class="bg-glow"></div>
+<nav>
+    <div class="logo">SHIN TAEYOUNG</div>
+    <div class="nav-links">
+        <button onclick="showTab('pricelist')" id="btn-pricelist" class="active">Ads</button>
+        <button onclick="showTab('rental')" id="btn-rental">Rental</button>
+        <button onclick="showTab('builder')" id="btn-builder">Builder</button>
+        <button onclick="showTab('living')" id="btn-living">Living</button>
     </div>
-    <div class="copyright">© Shin Taeyoung Company</div>
+</nav>
+
+<section id="pricelist" class="active">
+  <h2>ADVERTISEMENT</h2>
+  <div class="grid">
+    <div class="ad-tier"><h3>BASIC</h3><div class="price">$50/ADS</div><ul><li>Include With <strong>Watermark</strong></li><li><strong>Fast Service</strong></li></ul></div>
+    <div class="ad-tier"><h3>PREMIUM</h3><div class="price">$90/ADS</div><ul><li>Non <strong>Watermark</strong></li><li><strong>Fast Service</strong></li><li>With <strong>Broadcast Schedule</strong></li></ul></div>
+    <div class="ad-tier"><h3>UNLIMITED</h3><div class="price">$100/ADS</div><ul><li><strong>Watermark/Non Watermark Request</strong></li><li><strong>Fast Service</strong></li><li>With <strong>Broadcast Schedule</strong></li></ul></div>
+  </div>
+  <p style="text-align:center; margin-top:20px; opacity:0.5;">© Shin Taeyoung Company</p>
 </section>
 
-<section id="rental" class="tab-content">
-    <h2>Vehicle Rental Pricelist</h2>
-    <div class="grid">
-        <div class="rental-tier">
-            <h3>BENSON</h3>
-            <div class="price">$20/CRATE</div>
-            <ul><li>PADLOCK : <strong>$345</strong></li><li>DESTROY/INSURANCE : <strong>$500</strong></li></ul>
-        </div>
-        <div class="rental-tier">
-            <h3>ROADTRAIN</h3>
-            <div class="price">$30/TRAILER</div>
-            <ul><li>PADLOCK : <strong>$560</strong></li><li>DESTROY/INSURANCE : <strong>$1,000</strong></li></ul>
-        </div>
-        <div class="rental-tier">
-            <h3>BOAT</h3>
-            <div class="price">$22/HOURS</div>
-            <ul><li>PADLOCK : <strong>$520</strong></li><li>DESTROY/INSURANCE : <strong>$734</strong></li></ul>
-        </div>
-    </div>
-    <div class="copyright">© Shin Taeyoung Company</div>
+<section id="rental">
+  <h2>VEHICLE RENTAL</h2>
+  <div class="grid">
+    <div class="rental-tier"><h3>BENSON</h3><div class="price">$20/CRATE</div><ul><li>PADLOCK : <strong>$345</strong></li><li>DESTROY/INSURANCE : <strong>$500</strong></li></ul></div>
+    <div class="rental-tier"><h3>ROADTRAIN</h3><div class="price">$30/TRAILER</div><ul><li>PADLOCK : <strong>$560</strong></li><li>DESTROY/INSURANCE : <strong>$1,000</strong></li></ul></div>
+    <div class="rental-tier"><h3>BOAT</h3><div class="price">$22/HOURS</div><ul><li>PADLOCK : <strong>$520</strong></li><li>DESTROY/INSURANCE : <strong>$734</strong></li></ul></div>
+  </div>
+  <p style="text-align:center; margin-top:20px; opacity:0.5;">© Shin Taeyoung Company</p>
 </section>
 
-<section id="builder" class="tab-content">
-    <h2>Builder Pricelist</h2>
-    <div class="tab-nav">
-        <button onclick="openBuilder('tab1')">Flat</button>
-        <button onclick="openBuilder('tab2')">Suite</button>
-        <button onclick="openBuilder('tab3')">House</button>
-        <button onclick="openBuilder('tab4')">House (Ext)</button>
-    </div>
-    <div id="tab1" class="buildertab">
-        <h3>FLAT</h3>
-        <ul>
-            <li>LOW TYPE : <strong>$5,000 - $7,000</strong></li>
-            <li>MEDIUM TYPE : <strong>$8,000 - $9,000</strong></li>
-            <li>RAINBOW TYPE : <strong>$11,000</strong></li>
-            <li>HIGH TYPE : <strong>$10,000 - $12,000</strong></li>
-            <li>LUXURY TYPE : <strong>$16,000 - $18,000</strong></li>
-        </ul>
-    </div>
-    <div id="tab2" class="buildertab" style="display:none">
-        <h3>SUITE</h3>
-        <ul>
-            <li>UNITY : <strong>$12,000 - $21,000</strong></li>
-            <li>TEMPLE : <strong>$12,000 - $21,000</strong></li>
-            <li>RODEO : <strong>$14,000 - $22,000</strong></li>
-            <li>GLENPARK : <strong>$14,000 - $23,000</strong></li>
-        </ul>
-    </div>
-    <div id="tab3" class="buildertab" style="display:none">
-        <h3>HOUSE</h3>
-        <ul>
-            <li>2 ROOMS : <strong>$7,000 - $8,000</strong></li>
-            <li>3 ROOMS : <strong>$8,000 - $13,000</strong></li>
-            <li>4 ROOMS : <strong>$13,000 - $17,000</strong></li>
-            <li>3 ROOMS (PALOMINO) : <strong>$13,000</strong></li>
-            <li>4 ROOMS (PALOMINO) : <strong>$17,000</strong></li>
-        </ul>
-    </div>
-    <div id="tab4" class="buildertab" style="display:none">
-        <h3>HOUSE (EXTENDED)</h3>
-        <ul>
-            <li>4 ROOMS (ROCKSHORE) : <strong>$15,000</strong></li>
-            <li>5 ROOMS (ROCKSHORE) : <strong>$19,000</strong></li>
-            <li>5 ROOMS : <strong>$16,000</strong></li>
-            <li>6 ROOMS : <strong>$17,500</strong></li>
-            <li>8 ROOMS : <strong>$20,000</strong></li>
-        </ul>
-    </div>
+<section id="builder">
+  <h2>BUILDER PRICELIST</h2>
+  <div class="tab-nav">
+    <button onclick="openBuilder('tab1')">Flat</button>
+    <button onclick="openBuilder('tab2')">Suite</button>
+    <button onclick="openBuilder('tab3')">House</button>
+    <button onclick="openBuilder('tab4')">House (Extended)</button>
+  </div>
+  <div id="tab1" class="buildertab"><h3>FLAT</h3><ul><li>LOW TYPE : <strong>$5,000 - $7,000</strong></li><li>MEDIUM TYPE : <strong>$8,000 - $9,000</strong></li><li>RAINBOW TYPE : <strong>$11,000</strong></li><li>HIGH TYPE : <strong>$10,000 - $12,000</strong></li><li>LUXURY TYPE : <strong>$16,000 - $18,000</strong></li></ul></div>
+  <div id="tab2" class="buildertab" style="display:none"><h3>SUITE</h3><ul><li>UNITY : <strong>$12,000 - $21,000</strong></li><li>TEMPLE : <strong>$12,000 - $21,000</strong></li><li>RODEO : <strong>$14,000 - $22,000</strong></li><li>GLENPARK : <strong>$14,000 - $23,000</strong></li></ul></div>
+  <div id="tab3" class="buildertab" style="display:none"><h3>HOUSE</h3><ul><li>2 ROOMS : <strong>$7,000 - $8,000</strong></li><li>3 ROOMS : <strong>$8,000 - $13,000</strong></li><li>4 ROOMS : <strong>$13,000 - $17,000</strong></li><li>3 ROOMS (PALOMINO) : <strong>$13,000</strong></li><li>4 ROOMS (PALOMINO) : <strong>$17,000</strong></li></ul></div>
+  <div id="tab4" class="buildertab" style="display:none"><h3>HOUSE (EXTENDED)</h3><ul><li>4 ROOMS (ROCKSHORE) : <strong>$15,000</strong></li><li>5 ROOMS (ROCKSHORE) : <strong>$19,000</strong></li><li>5 ROOMS : <strong>$16,000</strong></li><li>6 ROOMS : <strong>$17,500</strong></li><li>8 ROOMS : <strong>$20,000</strong></li></ul></div>
 </section>
 
-<section id="homestay" class="tab-content">
-    <h2>Homestay Apartment</h2>
-    <div class="card" style="text-align:center">
-        <h3>Homestay Apartment</h3>
-        <div class="price">$500 - $600 / Weeks</div>
-    </div>
-</section>
-
-<section id="showroom" class="tab-content">
-    <h2>Vehicle Showroom</h2>
-    <div class="card" style="text-align:center">
-        <h3>Vehicle Showroom</h3>
-        <div class="price">Custom Price</div>
-        <p>Harga tergantung jumlah kendaraan dan pemesanan.</p>
-    </div>
-</section>
-
-<section id="testi-section" class="tab-content">
-    <h2>Global Testimonials</h2>
-    <div class="card" style="max-width:500px; margin:auto">
-        <input type="text" id="testiName" placeholder="Nama Anda...">
-        <textarea id="testiContent" rows="3" placeholder="Tulis testimoni..."></textarea>
-        <button class="btn-gold" onclick="submitTestimonial()">Kirim Testimoni</button>
-    </div>
-    <div id="testiDisplay" class="grid" style="margin-top:30px"></div>
+<section id="living">
+  <h2>LIVING & SHOWROOM</h2>
+  <div class="grid">
+    <div class="card"><h3>HOMESTAY APARTMENT</h3><div class="price">$500 - $600 / Weeks</div></div>
+    <div class="card"><h3>VEHICLE SHOWROOM</h3><div class="price">Custom Price</div><p>Harga tergantung jumlah kendaraan dan pemesanan.</p></div>
+  </div>
 </section>
 
 <div class="chatbox">
-    <div class="chat-header">Global Live Chat</div>
+    <div class="chat-header">GLOBAL CHAT</div>
     <div id="chatmsg"></div>
     <div class="chat-input-area">
-        <input id="chatinput" placeholder="Tulis pesan..." onkeypress="if(event.key==='Enter') sendChat()">
+        <input id="chatinput" placeholder="Message..." onkeypress="if(event.key==='Enter') sendChat()">
         <button onclick="sendChat()">➤</button>
     </div>
 </div>
 
+<div class="copyright">© SHIN TAEYOUNG COMPANY 2026</div>
+
 <script>
-    // FIREBASE CONFIG (Sesuai dengan image yang diupload)
     const firebaseConfig = {
         apiKey: "AIzaSyCpDAf9D2Bv31pnqRIjffL-E9IAP8SqTTy",
         authDomain: "shin-taeyoung-website.firebaseapp.com",
@@ -226,16 +120,14 @@
         messagingSenderId: "313549044765",
         appId: "1:313549044765:web:f8e31a68cb677bcfb81af4"
     };
-
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // NAVIGATION LOGIC
-    function showTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        document.querySelectorAll('.main-nav button').forEach(b => b.classList.remove('active'));
-        document.getElementById('btn-' + tabId).classList.add('active');
+    function showTab(id) {
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-'+id).classList.add('active');
     }
 
     function openBuilder(id) {
@@ -243,38 +135,19 @@
         document.getElementById(id).style.display = 'block';
     }
 
-    // FIREBASE FUNCTIONS
     function sendChat() {
         const inp = document.getElementById("chatinput");
         if(!inp.value.trim()) return;
-        db.ref("global_chats").push({ sender: "Guest", msg: inp.value, time: Date.now() });
+        db.ref("global_chats").push({ sender: "User", msg: inp.value });
         inp.value = "";
     }
 
-    db.ref("global_chats").limitToLast(20).on("value", snap => {
+    db.ref("global_chats").limitToLast(15).on("value", snap => {
+        const box = document.getElementById("chatmsg");
         let html = "";
         snap.forEach(c => { html += `<div class="chat-item"><b>${c.val().sender}:</b> ${c.val().msg}</div>`; });
-        document.getElementById("chatmsg").innerHTML = html;
-        document.getElementById("chatmsg").scrollTop = 1000;
-    });
-
-    function submitTestimonial() {
-        const n = document.getElementById("testiName").value;
-        const c = document.getElementById("testiContent").value;
-        if(n && c) {
-            db.ref("global_testi").push({ name: n, content: c, date: new Date().toLocaleDateString() });
-            alert("Terima kasih atas testimoninya!");
-            document.getElementById("testiName").value = "";
-            document.getElementById("testiContent").value = "";
-        }
-    }
-
-    db.ref("global_testi").on("value", snap => {
-        let html = "";
-        snap.forEach(t => { 
-            html = `<div class="testi-card"><h3>${t.val().name}</h3><p>"${t.val().content}"</p><small>${t.val().date || ''}</small></div>` + html; 
-        });
-        document.getElementById("testiDisplay").innerHTML = html;
+        box.innerHTML = html;
+        box.scrollTop = box.scrollHeight;
     });
 </script>
 </body>
