@@ -10,11 +10,10 @@
         * { margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat',sans-serif; }
         body { background: var(--bg); color: #fff; overflow-x: hidden; }
 
-        /* ANIMASI */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
-        /* LOGIN SCREEN ANTARES STYLE */
+        /* LOGIN SCREEN ANTARES */
         #login-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: #f4f7fe; z-index: 9999; display: flex; align-items: center; justify-content: center;
@@ -47,40 +46,36 @@
             width: 100%; padding: 12px; background: var(--blue-btn); color: #fff; 
             border: none; border-radius: 10px; font-weight: 700; cursor: pointer; transition: 0.3s;
         }
-        .btn-main:hover { background: #4752c4; transform: translateY(-2px); }
 
         /* MAIN UI */
         #main-wrapper { display: none; }
         header { background: #040d1a; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--y); position: sticky; top: 0; z-index: 1000; }
         .logo { font-weight: 900; font-size: 18px; letter-spacing: 2px; }
         .logo span { color: var(--y); }
-        nav { display: flex; gap: 5px; }
-        nav button { background: none; border: 1px solid transparent; color: #fff; padding: 8px 12px; cursor: pointer; font-weight: 700; font-size: 10px; text-transform: uppercase; border-radius: 5px; transition: 0.3s; }
+        nav { display: flex; gap: 5px; flex-wrap: wrap; }
+        nav button { background: none; border: 1px solid transparent; color: #fff; padding: 8px 12px; cursor: pointer; font-weight: 700; font-size: 10px; text-transform: uppercase; border-radius: 5px; }
         nav button.active { background: var(--y); color: #000; }
 
-        /* CONTENT */
         section { padding: 60px 8%; display: none; min-height: 85vh; animation: fadeUp 0.6s ease; }
         section.active { display: block; }
         h2.title { text-align: center; color: var(--y); font-size: 24px; font-weight: 900; letter-spacing: 4px; margin-bottom: 40px; text-transform: uppercase; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); transition: 0.3s; }
-        .card:hover { border-color: var(--y); transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
-        
+        .card { background: var(--card); border: 1px solid rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; text-align: center; backdrop-filter: blur(10px); }
         .price-tag { font-size: 28px; font-weight: 900; color: var(--y); margin: 15px 0; display: block; }
+        
         ul { list-style: none; text-align: left; margin-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; font-size: 11px; }
         li { margin-bottom: 10px; display: flex; justify-content: space-between; }
         li b { color: var(--y); }
 
         /* CHATBOX */
-        .chat-ui { position: fixed; bottom: 20px; right: 20px; width: 300px; border: 2px solid var(--y); border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 2000; animation: slideIn 0.5s ease; }
+        .chat-ui { position: fixed; bottom: 20px; right: 20px; width: 300px; border: 2px solid var(--y); border-radius: 15px; overflow: hidden; background: #fff; box-shadow: 0 10px 40px rgba(0,0,0,0.6); z-index: 2000; }
         .chat-h { background: #000; color: var(--y); padding: 12px; font-weight: 900; text-align: center; font-size: 11px; }
         #chat-logs { height: 200px; overflow-y: auto; padding: 15px; background: #f9f9f9; color: #333; font-size: 11px; display: flex; flex-direction: column; gap: 8px; }
-        .msg-box { background: #fff; padding: 10px; border-radius: 8px; border-left: 4px solid var(--y); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        .msg-box b { color: var(--blue-btn); display: block; font-size: 9px; text-transform: uppercase; }
+        .msg-box { background: #fff; padding: 10px; border-radius: 8px; border-left: 4px solid var(--y); }
+        .msg-box b { color: var(--blue-btn); display: block; font-size: 9px; }
         .chat-f { display: flex; padding: 10px; background: #fff; border-top: 1px solid #eee; }
-        .chat-f input { flex: 1; margin: 0; padding: 8px 15px; border-radius: 20px; font-size: 11px; }
-        .chat-f button { background: #000; color: var(--y); border: none; width: 35px; height: 35px; border-radius: 50%; margin-left: 5px; cursor: pointer; }
+        .chat-f input { flex: 1; padding: 8px 15px; border-radius: 20px; font-size: 11px; border: 1px solid #ddd; }
     </style>
 </head>
 
@@ -89,7 +84,7 @@
 <div id="login-overlay">
     <div class="login-card">
         <h2 style="color: var(--blue-btn)">Shin Taeyoung Co.</h2>
-        <p>Sign in to your account</p>
+        <p id="auth-title">Sign in to your account</p>
         
         <div id="step-1">
             <button class="btn-google" onclick="goStep2()">
@@ -102,10 +97,10 @@
         </div>
 
         <div id="step-2" style="display:none">
-            <input type="text" id="reg-user" placeholder="Buat Username">
-            <input type="password" id="reg-pass" placeholder="Buat Password">
-            <button class="btn-main" onclick="finalizeLogin()">Create & Login</button>
-            <p onclick="location.reload()" style="margin-top:10px; cursor:pointer; font-size:10px; color:var(--blue-btn)">Kembali</p>
+            <input type="text" id="auth-user" placeholder="Username">
+            <input type="password" id="auth-pass" placeholder="Password">
+            <button class="btn-main" onclick="handleAuth()">Login / Create Account</button>
+            <p onclick="location.reload()" style="margin-top:15px; cursor:pointer; font-size:10px; color:var(--blue-btn)">Kembali</p>
         </div>
     </div>
 </div>
@@ -126,8 +121,8 @@
         <h2 class="title">ADVERTISEMENT</h2>
         <div class="grid">
             <div class="card"><h3>BASIC</h3><span class="price-tag">$50/ADS</span><ul><li>Watermark <b>YES</b></li><li>Fast Service <b>YES</b></li></ul></div>
-            <div class="card"><h3>PREMIUM</h3><span class="price-tag">$90/ADS</span><ul><li>Watermark <b>NO</b></li><li>Fast Service <b>YES</b></li><li>With Broadcast Schedule <b>YES</b></li></ul></div>
-            <div class="card"><h3>UNLIMITED</h3><span class="price-tag">$100/ADS</span><ul><li>Watermark <b>REQUEST</b></li><li>With Broadcast Schedule <b>YES</b></li></ul></div>
+            <div class="card"><h3>PREMIUM</h3><span class="price-tag">$90/ADS</span><ul><li>Watermark <b>NO</b></li><li>Fast Service <b>YES</b></li><li>Broadcast <b>YES</b></li></ul></div>
+            <div class="card"><h3>UNLIMITED</h3><span class="price-tag">$100/ADS</span><ul><li>Watermark <b>REQ</b></li><li>Broadcast <b>YES</b></li></ul></div>
         </div>
     </section>
 
@@ -137,27 +132,20 @@
             <div class="card">
                 <h3>FLAT TYPE</h3>
                 <ul>
-                    <li>Low Type <b>$5.000 - $7.000</b></li>
-                    <li>Medium Type <b>$8.000 - $9.000</b></li>
-                    <li>Rainbow Type <b>$11.000</b></li>
-                    <li>High Type <b>$10.000 - $12.000</b></li>
-                    <li>Luxury Type <b>$16.000 - $18.000</b></li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>SUITE TYPE</h3>
-                <ul>
-                    <li>Unity / Temple <b>$12k - $21k</b></li>
-                    <li>Rodeo / Glenpark <b>$14k - $23k</b></li>
+                    <li>Low <b>$5k - $7k</b></li>
+                    <li>Medium <b>$8k - $9k</b></li>
+                    <li>Rainbow <b>$11k</b></li>
+                    <li>High <b>$10k - $12k</b></li>
+                    <li>Luxury <b>$16k - $18k</b></li>
                 </ul>
             </div>
             <div class="card">
                 <h3>HOUSE TYPE</h3>
                 <ul>
                     <li>2-4 Rooms <b>$7k - $17k</b></li>
-                    <li>Palomino (3-4 R) <b>$13k - $17k</b></li>
-                    <li>Rockshore (4-5 R) <b>$15k - $19k</b></li>
-                    <li>Big House (6-8 R) <b>$17.5k - $20k</b></li>
+                    <li>Palomino <b>$13k - $17k</b></li>
+                    <li>Rockshore <b>$15k - $19k</b></li>
+                    <li>Big House <b>$20k</b></li>
                 </ul>
             </div>
         </div>
@@ -171,28 +159,14 @@
             <div class="card"><h3>BOAT</h3><span class="price-tag">$22/H</span><ul><li>Padlock <b>$520</b></li><li>Insurance <b>$734</b></li></ul></div>
         </div>
     </section>
-
-    <section id="home">
-        <h2 class="title">HOMESTAY</h2>
-        <div class="grid">
-            <div class="card"><h3>Apartment</h3><span class="price-tag">$500 - $600</span><p>Per Weeks / Lokasi Nyaman</p></div>
-        </div>
-    </section>
-
-    <section id="show">
-        <h2 class="title">SHOWROOM</h2>
-        <div class="grid">
-            <div class="card"><h3>Custom Showroom</h3><span class="price-tag">CUSTOM</span><p>Harga Sesuai Pesanan.</p></div>
-        </div>
-    </section>
 </div>
 
 <div class="chat-ui">
     <div class="chat-h">GLOBAL COMMUNITY CHAT</div>
     <div id="chat-logs"></div>
     <div class="chat-f">
-        <input id="chat-in" placeholder="Tulis pesan..." onkeypress="if(event.key==='Enter') send()">
-        <button onclick="send()">➤</button>
+        <input id="chat-in" placeholder="Pesan..." onkeypress="if(event.key==='Enter') send()">
+        <button onclick="send()" style="background:#000; color:var(--y); border:none; width:35px; border-radius:50%; margin-left:5px;">➤</button>
     </div>
 </div>
 
@@ -209,26 +183,36 @@
         document.getElementById("step-2").style.display = "block";
     }
 
-    function finalizeLogin() {
-        const u = document.getElementById("reg-user").value.trim();
-        const p = document.getElementById("reg-pass").value.trim();
-        if(u.length < 3) return alert("Username minimal 3 huruf!");
-        activeUser = u;
-        db.ref("users/" + u).set({ password: p });
-        enterApp();
+    function handleAuth() {
+        const u = document.getElementById("auth-user").value.trim();
+        const p = document.getElementById("auth-pass").value.trim();
+        if(u.length < 3 || p.length < 4) return alert("Username min 3, Password min 4!");
+
+        db.ref("users/" + u).once("value", (snap) => {
+            if (snap.exists()) {
+                if (snap.val().password === p) {
+                    activeUser = u; enterApp();
+                } else { alert("Sandi salah!"); }
+            } else {
+                if(confirm("Nama belum ada, mau daftar baru?")) {
+                    db.ref("users/" + u).set({ password: p }).then(() => {
+                        activeUser = u; enterApp();
+                    });
+                }
+            }
+        });
     }
 
     function loginGuest() {
         const u = document.getElementById("guest-name").value.trim();
-        if(!u) return alert("Isi nama kamu!");
-        activeUser = u + " (Guest)";
-        enterApp();
+        if(!u) return alert("Isi nama guest!");
+        activeUser = u + " (Guest)"; enterApp();
     }
 
     function enterApp() {
         document.getElementById("login-overlay").style.display = "none";
         document.getElementById("main-wrapper").style.display = "block";
-        db.ref("global_chats").push({ user: "SYSTEM", text: activeUser + " has joined the company portal." });
+        db.ref("global_chats").push({ user: "SYSTEM", text: activeUser + " joined." });
     }
 
     function st(id, btn) {
@@ -247,9 +231,7 @@
 
     db.ref("global_chats").limitToLast(15).on("value", snap => {
         const logs = document.getElementById("chat-logs"); let html = "";
-        snap.forEach(s => { 
-            html += `<div class="msg-box"><b>${s.val().user}</b> ${s.val().text}</div>`; 
-        });
+        snap.forEach(s => { html += `<div class="msg-box"><b>${s.val().user}</b> ${s.val().text}</div>`; });
         logs.innerHTML = html; logs.scrollTop = logs.scrollHeight;
     });
 </script>
