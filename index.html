@@ -268,6 +268,7 @@
         document.getElementById("step-2").style.display = "block";
     }
 
+// Fungsi Login Akun
     function handleAuth() {
         const u = document.getElementById("auth-user").value.trim();
         const p = document.getElementById("auth-pass").value.trim();
@@ -276,29 +277,50 @@
         db.ref("users/" + u).once("value", (snap) => {
             if (snap.exists()) {
                 if (snap.val().password === p) {
-                    activeUser = u; enterApp();
+                    activeUser = u; 
+                    sessionStorage.setItem("st_user", u); // Simpan session
+                    enterApp(true); 
                 } else { alert("Sandi salah!"); }
             } else {
                 if(confirm("Nama belum ada, mau daftar baru?")) {
                     db.ref("users/" + u).set({ password: p }).then(() => {
-                        activeUser = u; enterApp();
+                        activeUser = u; 
+                        sessionStorage.setItem("st_user", u);
+                        enterApp(true);
                     });
                 }
             }
         });
     }
 
+    // Fungsi Login Tamu
     function loginGuest() {
         const u = document.getElementById("guest-name").value.trim();
         if(!u) return alert("Isi nama guest!");
-        activeUser = u + " (Guest)"; enterApp();
+        activeUser = u + " (Guest)"; 
+        sessionStorage.setItem("st_user", activeUser);
+        enterApp(true);
     }
 
-    function enterApp() {
+    // Fungsi Masuk ke Dashboard
+    function enterApp(firstTime) {
         document.getElementById("login-overlay").style.display = "none";
         document.getElementById("main-wrapper").style.display = "block";
-        db.ref("global_chats").push({ user: "SYSTEM", text: activeUser + " joined." });
+        
+        // Cek supaya kalau cuma refresh, pesan SYSTEM joined nggak spam di chat
+        if(firstTime) {
+            db.ref("global_chats").push({ user: "SYSTEM", text: activeUser + " joined." });
+        }
     }
+
+    // SCRIP OTOMATIS: Cek session pas refresh (PENTING)
+    window.onload = function() {
+        const userSaved = sessionStorage.getItem("st_user");
+        if(userSaved) {
+            activeUser = userSaved;
+            enterApp(false); // Masuk tapi nggak kirim pesan "joined" lagi
+        }
+    };
 
     function st(id, btn) {
         document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
