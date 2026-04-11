@@ -481,5 +481,24 @@ function goStep2() {
         document.getElementById('step-2').style.display = 'block';
     }
 
+    function st(sectionId, btn) {
+    // 1. Sembunyikan semua section yang ada di dalam main-wrapper
+    document.querySelectorAll('#main-wrapper section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // 2. Munculkan section yang diklik (contoh: partner)
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.style.display = 'block';
+    }
+
+    // 3. Pindahkan class 'active' biar tombolnya nyala kuning
+    document.querySelectorAll('nav button').forEach(button => {
+        button.classList.remove('active');
+    });
+    btn.classList.add('active');
+}
+
 </script> </div> </body>
 </html>
