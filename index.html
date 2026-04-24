@@ -106,7 +106,7 @@
     </style>
 </head>
 
-<body> <div id="custom-cursor"></div>
+<body>
 
     <div id="login-overlay">
         <div class="login-card">
@@ -452,30 +452,6 @@
         if(userSaved) { activeUser = userSaved; enterApp(false); }
     };
 
-    // --- KODE KURSOR PUTIH ANTI-ANDROID (FIXED) ---
-    const cursor = document.getElementById('custom-cursor');
-
-    // Cek: Hanya jalanin kursor kalau di PC/Laptop (Layar > 768px)
-    if (window.matchMedia("(min-width: 769px)").matches && cursor) {
-        document.addEventListener('mousemove', (e) => {
-            // Pake requestAnimationFrame biar kursornya gak delay/patah-patah
-            requestAnimationFrame(() => {
-                cursor.style.left = e.clientX + 'px';
-                cursor.style.top = e.clientY + 'px';
-            });
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.classList.add('cursor-click');
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.classList.remove('cursor-click');
-        });
-    } else {
-        // Kalau di HP/Android, hapus elemen kursor biar gak menuh-menuhin layar
-        if(cursor) cursor.remove();
-    }
 </script>
 
 </body>
