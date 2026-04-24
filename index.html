@@ -12,29 +12,6 @@
 
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-
-                /* Custom Cursor Bulat */
-        * {
-        cursor: none !important; /* Sembunyikan kursor asli */
-        }
-
-        #custom-cursor {
-        width: 20px;
-        height: 20px;
-        background: var(--y); /* Warna kuning/gold tema lo */
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.1s ease;
-        box-shadow: 0 0 15px var(--y);
-        }
-
-        /* Efek pas klik */
-        .cursor-click {
-        transform: scale(1.5);
-        background: #fff !important;
-        }  
         
         /* LOGIN SCREEN ANTARES */
         #login-overlay { 
@@ -129,13 +106,17 @@
     </style>
 </head>
 
-<body>
+<body> <div id="custom-cursor"></div>
 
-<div id="login-overlay">
-    <div id="custom-cursor"></div>
-    <div class="login-card">
-        <h2 style="color: var(--blue-btn)">Shin Taeyoung Co.</h2>
-        <p id="auth-title">Sign in to your account</p>
+    <div id="login-overlay">
+        <div class="login-card">
+            <h2 style="color: var(--blue-btn)">ST Co.</h2>
+            <p id="auth-title">Sign in to your account</p>
+            </div>
+    </div>
+
+    <div id="main-wrapper">
+        </div>
         
         <div id="step-1">
             <button class="btn-google" onclick="goStep2()">
@@ -471,22 +452,30 @@
         if(userSaved) { activeUser = userSaved; enterApp(false); }
     };
 
-    // --- KODE KURSOR BULAT KAMU DI SINI ---
+    // --- KODE KURSOR PUTIH ANTI-ANDROID (FIXED) ---
     const cursor = document.getElementById('custom-cursor');
 
-    document.addEventListener('mousemove', (e) => {
-        // e.clientX & Y buat deteksi posisi tangan kamu di layar
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    });
+    // Cek: Hanya jalanin kursor kalau di PC/Laptop (Layar > 768px)
+    if (window.matchMedia("(min-width: 769px)").matches && cursor) {
+        document.addEventListener('mousemove', (e) => {
+            // Pake requestAnimationFrame biar kursornya gak delay/patah-patah
+            requestAnimationFrame(() => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+        });
 
-    document.addEventListener('mousedown', () => {
-        cursor.classList.add('cursor-click'); // Efek pas dipencet
-    });
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('cursor-click');
+        });
 
-    document.addEventListener('mouseup', () => {
-        cursor.classList.remove('cursor-click');
-    });
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('cursor-click');
+        });
+    } else {
+        // Kalau di HP/Android, hapus elemen kursor biar gak menuh-menuhin layar
+        if(cursor) cursor.remove();
+    }
 </script>
 
 </body>
