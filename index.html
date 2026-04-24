@@ -491,25 +491,37 @@
         const welcome = document.getElementById('welcome-screen');
         const main = document.getElementById('main-wrapper');
         if(welcome) welcome.style.opacity = '0';
+        
         setTimeout(() => {
             if(welcome) welcome.style.display = 'none';
             if(main) main.style.display = 'block';
-            st('ads', document.querySelector('nav button'));
+            
+            // PAKAI ID 'homes' SESUAI REQUEST
+            const firstBtn = document.querySelector('nav button');
+            st('homes', firstBtn);
         }, 800);
     }
 
     // 3. NAVIGASI
     function st(sectionId, btn) {
         const sections = document.querySelectorAll('#main-wrapper section');
-        sections.forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
+        sections.forEach(s => { 
+            s.style.display = 'none'; 
+            s.classList.remove('active'); 
+        });
+        
         const target = document.getElementById(sectionId);
-        if (target) { target.style.display = 'block'; target.classList.add('active'); }
+        if (target) { 
+            target.style.display = 'block'; 
+            target.classList.add('active'); 
+        }
+
         const buttons = document.querySelectorAll('nav button');
         buttons.forEach(b => b.classList.remove('active'));
         if(btn) btn.classList.add('active');
     }
 
-    // 4. CHAT
+    // 4. CHAT (Pastiin ID inputnya 'chat-input')
     function send() {
         const i = document.getElementById("chat-input"); 
         if(!i || !i.value.trim() || !activeUser) return;
@@ -517,14 +529,18 @@
         i.value = "";
     }
 
-    db.ref("global_chats").limitToLast(15).on("value", snap => {
-        const logs = document.getElementById("chat-logs"); 
-        if(!logs) return;
-        let html = "";
-        snap.forEach(s => { html += `<div class="msg-box"><b>${s.val().user}</b> ${s.val().text}</div>`; });
-        logs.innerHTML = html; 
-        logs.scrollTop = logs.scrollHeight;
-    });
+    if (typeof db !== 'undefined') {
+        db.ref("global_chats").limitToLast(15).on("value", snap => {
+            const logs = document.getElementById("chat-logs"); 
+            if(!logs) return;
+            let html = "";
+            snap.forEach(s => { 
+                html += `<div class="msg-box"><b>${s.val().user}</b> ${s.val().text}</div>`; 
+            });
+            logs.innerHTML = html; 
+            logs.scrollTop = logs.scrollHeight;
+        });
+    }
 
     // 5. AUTO LOGIN
     window.onload = function() {
