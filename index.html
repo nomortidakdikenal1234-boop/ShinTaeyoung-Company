@@ -29,6 +29,14 @@
             transform: translate(-50%, -50%);
         }
 
+            /* Animasi saat diklik */
+        #custom-cursor.click-anim {
+            transform: translate(-50%, -50%) scale(2.5); /* Membesar 2.5x lipat */
+            background: rgba(0, 85, 255, 0.3); /* Berubah warna transparan dikit */
+            border-color: #ffffff; /* Border jadi putih biar kontras */
+            transition: transform 0.15s ease-out;
+        }
+        
 /* --- 2. NAVIGATION BAR (UPDATED) --- */
         nav {
             position: fixed; top: 0; width: 100%;
@@ -296,12 +304,24 @@
         if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // --- 2. CURSOR & SCROLL LOGIC ---
+// --- 2. CURSOR & SCROLL LOGIC (VERSI LENGKAP) ---
         const cursor = document.getElementById('custom-cursor');
+
+        // Gerakan kursor mengikuti mouse
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px';
+            cursor.style.left = e.clientX + 'px'; 
+            cursor.style.top = e.clientY + 'px';
         });
 
+        // Animasi klik (Membesar & Mengecil)
+        document.addEventListener('mousedown', () => {
+            cursor.classList.add('click-anim');
+        });
+        document.addEventListener('mouseup', () => {
+            cursor.classList.remove('click-anim');
+        });
+
+        // Efek Navbar saat di-scroll
         window.onscroll = function() {
             const nav = document.getElementById('navbar');
             if (window.pageYOffset > 50) nav.classList.add('scrolled');
